@@ -1,0 +1,16 @@
+# Python virtual environment
+venv/
+
+# Plik informacyjny o venv
+VENV.txt
+
+# PyCharm / JetBrains
+.idea/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# System files
+.DS_Store
+Thumbs.db
