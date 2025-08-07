@@ -1,0 +1,38 @@
+# Tworzenie nowego środowiska wirtualnego o nazwie 'venv'
+python -m venv venv
+
+# Aktywacja środowiska venv (dla systemu Windows - cmd)
+venv\Scripts\activate
+
+# Aktywacja środowiska venv (dla systemu Windows - PowerShell)
+venv\Scripts\Activate.ps1
+
+# Aktywacja środowiska venv (dla systemu Linux/macOS)
+source venv/bin/activate
+
+# Instalowanie pakietów (przykład, jeśli potrzebne)
+pip install numpy pandas
+
+# Eksportowanie zainstalowanych bibliotek do pliku requirements.txt
+pip freeze > requirements.txt
+
+# Dezaktywacja środowiska venv
+deactivate
+
+# Odtwarzanie środowiska venv z pliku requirements.txt na innym komputerze:
+# (1) Tworzenie środowiska venv
+python -m venv venv
+
+# (2) Aktywacja środowiska (komenda zależna od systemu operacyjnego)
+# Windows CMD:
+venv\Scripts\activate
+# Windows PowerShell:
+venv\Scripts\Activate.ps1
+# Linux/macOS:
+source venv/bin/activate
+
+# (3) Instalacja wszystkich bibliotek zapisanych w requirements.txt
+pip install -r requirements.txt
+
+# Dezaktywacja środowiska po zakończeniu pracy
+deactivate

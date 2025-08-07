@@ -1,9 +1,6 @@
 # Python virtual environment
 venv/
 
-# Plik informacyjny o venv
-venv_full_workflow.txt
-
 # PyCharm / JetBrains
 .idea/
 
