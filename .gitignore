@@ -2,7 +2,7 @@
 venv/
 
 # Plik informacyjny o venv
-VENV.txt
+venv_full_workflow.txt
 
 # PyCharm / JetBrains
 .idea/

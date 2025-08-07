@@ -1,0 +1,76 @@
+# Inicjalizacja nowego repozytorium Gita w bieżącym folderze
+git init
+
+# Sklonowanie istniejącego zdalnego repozytorium (np. z GitHuba)
+git clone https://github.com/użytkownik/nazwa-repo.git
+
+# Sprawdzenie aktualnego statusu repozytorium (zmiany, gałęzie itd.)
+git status
+
+# Skonfigurowanie danych użytkownika (jednorazowo, globalnie)
+git config --global user.name "Twoje Imię"
+git config --global user.email "twoj@email.com"
+
+# Dodanie pojedynczego pliku do obszaru stage (przygotowanie do commitu)
+git add nazwa_pliku.py
+
+# Dodanie wszystkich zmodyfikowanych/nowych plików do stage
+git add .
+
+# Usunięcie pliku z obszaru stage (jeśli dodano go przypadkowo)
+git restore --staged nazwa_pliku.py
+
+# Zatwierdzenie zmian z opisem (commit)
+git commit -m "Krótki opis zmian"
+
+# Wyświetlenie historii commitów
+git log
+
+# Utworzenie nowej gałęzi
+git branch nowa-galaz
+
+# Przełączenie się na inną gałąź
+git checkout nowa-galaz
+# lub
+git switch feature/init-structure
+
+
+# Tworzenie nowej gałęzi i przejście na nią (skrótowo)
+git checkout -b nowa-galaz
+
+# Wyświetlenie wszystkich lokalnych gałęzi
+git branch
+
+# Usunięcie lokalnej gałęzi (jeśli niepotrzebna)
+git branch -d nazwa-galezi
+
+# Sprawdzenie różnic między plikami roboczymi a ostatnim commitem
+git diff
+
+# Pobranie najnowszych zmian ze zdalnego repozytorium bez wprowadzania ich lokalnie
+git fetch
+
+# Pobranie i zmergowanie zmian ze zdalnego repozytorium
+git pull
+
+# Wysłanie lokalnych commitów do zdalnego repozytorium
+git push
+
+# Wysłanie konkretnej gałęzi do zdalnego repozytorium (jeśli jeszcze nie istnieje)
+git push -u origin nazwa-galezi
+
+# Zmiana nazwy bieżącej gałęzi
+git branch -m nowa-nazwa
+
+# Usunięcie zdalnej gałęzi (ostrożnie!)
+git push origin --delete nazwa-galezi
+
+# Rozwiązywanie konfliktów — po edycji plików i dodaniu ich do stage
+git add .
+git commit -m "Rozwiązano konflikty"
+
+# Sprawdzenie konfiguracji zdalnego repozytorium (np. GitHub)
+git remote -v
+
+# Dodanie zdalnego repozytorium (jeśli nie ustawiono wcześniej)
+git remote add origin https://github.com/użytkownik/nazwa-repo.git
