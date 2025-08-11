@@ -2,6 +2,8 @@
 
 import numpy as np
 from numpy import random
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 print("NumPy version: " + np.__version__ + "\n")
 
@@ -240,3 +242,164 @@ print(x)
 x = random.choice([3, 5, 7, 9], size=(3, 5))
 print("\nGenerate a 2-D array that consists of the values in the array parameter (3, 5, 7, and 9):")
 print(x)
+
+# Create random matrix 1d and 2d - contain specyfic number with separate probability for each
+
+# Generate a 1-D array containing 100 values, where each value has to be 3, 5, 7 or 9.
+# The probability for the value to be 3 is set to be 0.1
+# The probability for the value to be 5 is set to be 0.3
+# The probability for the value to be 7 is set to be 0.6
+# The probability for the value to be 9 is set to be 0
+x = random.choice([3, 5, 7, 9], p=[0.1, 0.3, 0.6, 0.0], size=(100))
+
+# Same example as above, but return a 2-D array with 3 rows, each containing 5 values.
+y = random.choice([3, 5, 7, 9], p=[0.1, 0.3, 0.6, 0.0], size=(3, 5))
+
+
+print(f"\n array 1D with specyfic value and probablility: \n{x}")
+print(f"\n array 2D with specyfic value and probablility: \n{y}")
+
+
+
+
+# Randomly shuffle elements of following array
+arr = np.array([1, 2, 3, 4, 5])
+
+print(f"\nOryginal Array: {arr}")
+
+random.shuffle(arr)
+
+print("\nShuffle: ")
+print(arr)
+
+
+# Generate a random permutation of elements of following array
+arr = np.array([1, 2, 3, 4, 5])
+print(f"\nOryginal Array: {arr}")
+
+print("\nPermutation: ")
+print(random.permutation(arr))
+print(arr)
+
+
+
+# Seaborn Module
+#sns.displot([0, 1, 2, 3, 4, 5])
+#plt.show()
+
+#sns.displot([0, 1, 2, 3, 4, 5], kind="kde")
+#plt.show()
+
+##########################################################################
+# Normal Distribution                                                    #
+##########################################################################
+# It has three parameters:                                               #
+# loc - (Mean) where the peak of the bell exists.                        #
+# scale - (Standard Deviation) how flat the graph distribution should be.#
+# size - The shape of the returned array.                                #
+##########################################################################
+
+# Generate a random normal distribution of size 2x3:
+x = random.normal(size=(2, 3))
+print("\nGenerate a random normal distribution of size 2x3")
+print(x)
+
+# Generate a random normal distribution of size 2x3 with mean at 1 and standard deviation of 2
+x = random.normal(loc=1, scale=2, size=(2, 3))
+print("\nGenerate a random normal distribution of size 2x3 with mean at 1 and standard deviation of 2")
+print(x)
+
+
+
+# VISUALISATION OF DIFERENT DISTRIBUTIONS
+
+# Visualization of NORMAL DISTRIBUTION
+str = "\nVisualization of NORMAL DISTRIBUTION"
+print(str)
+# y to losowe 1000 liczb w rozkladzie normalnym
+y = random.normal(size=1000)
+
+# wykres rozkladu normalnego
+sns.displot(y, kind="kde")
+
+#plt.figure(num=str)
+plt.title(str)
+#plt.show()
+
+
+# Binomial Distribution
+# Given 10 trials for coin toss generate 10 data points
+x = random.binomial(n=10, p=0.5, size=10)
+
+print("\nGiven 10 trials for coin toss generate 10 data points")
+print(x)
+
+
+##################################################################################
+# Visualization of Binomial Distribution                                         #
+##################################################################################
+#It has three parameters:                                                        #
+# n - number of trials.                                                          #
+# p - probability of occurence of each trial (e.g. for toss of a coin 0.5 each). #
+# size - The shape of the returned array.                                        #
+##################################################################################
+
+str = "\nVisualization of Binomial Distribution"
+print(str)
+sns.displot(random.binomial(n=10, p=0.5, size=1000))
+
+#plt.figure(num=str)
+plt.title(str)
+#plt.show()
+
+
+#####################################################################
+# Difference Between Normal and Binomial Distribution               #
+#####################################################################
+print("\nDifference Between Normal and Binomial Distribution")
+data = {
+  "normal": random.normal(loc=50, scale=5, size=1000),
+  "binomial": random.binomial(n=100, p=0.5, size=1000)
+}
+
+
+sns.displot(data, kind="kde")
+plt.title("Difference Between Normal and Binomial Distribution")
+plt.show()
+
+
+
+##################################################################################
+# Poisson Distribution                                                           #
+##################################################################################
+# It has two parameters:                                                         #
+# lam - rate or known number of occurrences e.g. 2 for above problem.            #
+# size - The shape of the returned array.                                        #
+##################################################################################
+
+# Poisson Distribution
+x = random.poisson(lam=2, size=10)
+str = "Poisson Distribution"
+print("\nPoisson Distribution: ")
+print(x)
+
+
+sns.displot(random.poisson(lam=2, size=1000))
+
+plt.title(str)
+plt.show()
+
+
+# Diference between normal, binormal i poisson distribution:
+data = {
+    "normal"    : random.normal(loc=50, scale=7, size=1000),
+    "binormal"  : random.binomial(n=1000, p=0.01, size=1000),
+    "poisson"   : random.poisson(lam=10, size=1000)
+}
+
+sns.displot(data, kind="kde")
+plt.title("Difference normal - binormal - poisson distribution")
+plt.show()
+
+
+# https://www.w3schools.com/python/numpy/numpy_random_uniform.asp
