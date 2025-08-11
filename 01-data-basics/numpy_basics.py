@@ -1,6 +1,7 @@
 # https://www.w3schools.com/python/numpy/default.asp
 
 import numpy as np
+from numpy import random
 
 print("NumPy version: " + np.__version__ + "\n")
 
@@ -190,3 +191,52 @@ print("\nCreate a filter array that will return only values higher than 42:")
 
 print(f"Array: {arr}")
 print(f"Filter array: {filter_arr}")
+
+
+
+# Randm Numbers in NumPy
+
+# Generate a random integer from 0 to 100
+x = random.randint(100)
+
+
+# Generate a random float from 0 to 1
+y = random.rand()
+
+
+print("\nGenerate Random Number: ")
+
+print(f"Random intiger form 0 to 100:   {x}")
+print(f"Random float from 0 to 1:       {y}")
+
+
+# Generate Random Array
+# array 1d
+x = random.randint(100, size=(5))
+# array 2d
+y = random.randint(100, size=(3,5))
+
+print(f"\nRandom array 1d: \n{x} ")
+print(f"\nRandom array 2d: \n{y} ")
+
+
+# Generate a 1-D array containing 5 random floats
+x = random.rand(5)
+
+#  Generate a 2-D array with 3 rows, each row containing 5 random numbers
+y = random.rand(3, 5)
+
+print(f"\nGenerate a 1-D array containing 5 random floats: \n{x}")
+print(f"\nGenerate a 2-D array with 3 rows, each row containing 5 random numbers: \n{y}")
+
+
+# Return one of the values
+x = random.choice([3, 5, 7, 9])
+print("\nReturn one of the values: 3, 5, 7, 9")
+print(x)
+
+
+# Generate a 2-D array that consists of the values in the array parameter (3, 5, 7, and 9)
+x = random.choice([3, 5, 7, 9], size=(3, 5))
+print("\nGenerate a 2-D array that consists of the values in the array parameter (3, 5, 7, and 9):")
+print(x)
