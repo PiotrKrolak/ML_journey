@@ -4,8 +4,18 @@ import numpy as np
 from numpy import random
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
+
+folder = 'distributions_plots'
+
+# check if "distributions_plots" exist - if not create it.
+if not os.path.exists(folder):
+    os.makedirs(folder)
+
 
 print("NumPy version: " + np.__version__ + "\n")
+
+
 
 # create na NumPy array:
 # 0d array
@@ -284,11 +294,15 @@ print(arr)
 
 
 # Seaborn Module
-#sns.displot([0, 1, 2, 3, 4, 5])
+sns.displot([0, 1, 2, 3, 4, 5])
 #plt.show()
+plt.savefig(os.path.join(folder, "Seaborn_Module.png"))
+plt.close()
 
-#sns.displot([0, 1, 2, 3, 4, 5], kind="kde")
+sns.displot([0, 1, 2, 3, 4, 5], kind="kde")
 #plt.show()
+plt.savefig(os.path.join(folder, "Seaborn_Module_kde.png"))
+plt.close()
 
 ##########################################################################
 # Normal Distribution                                                    #
@@ -325,6 +339,8 @@ sns.displot(y, kind="kde")
 #plt.figure(num=str)
 plt.title(str)
 #plt.show()
+plt.savefig(os.path.join(folder, "normal_distribution.png"))
+plt.close()
 
 
 # Binomial Distribution
@@ -351,7 +367,8 @@ sns.displot(random.binomial(n=10, p=0.5, size=1000))
 #plt.figure(num=str)
 plt.title(str)
 #plt.show()
-
+plt.savefig(os.path.join(folder, "binormal_distribution.png"))
+plt.close()
 
 #####################################################################
 # Difference Between Normal and Binomial Distribution               #
@@ -365,8 +382,9 @@ data = {
 
 sns.displot(data, kind="kde")
 plt.title("Difference Between Normal and Binomial Distribution")
-plt.show()
-
+#plt.show()
+plt.savefig(os.path.join(folder, "normal_vs_binormal.png"))
+plt.close()
 
 
 ##################################################################################
@@ -387,7 +405,9 @@ print(x)
 sns.displot(random.poisson(lam=2, size=1000))
 
 plt.title(str)
-plt.show()
+#plt.show()
+plt.savefig(os.path.join(folder, "poisson_dist.png"))
+plt.close()
 
 
 # Diference between normal, binormal i poisson distribution:
@@ -399,7 +419,220 @@ data = {
 
 sns.displot(data, kind="kde")
 plt.title("Difference normal - binormal - poisson distribution")
-plt.show()
+#plt.show()
+plt.savefig(os.path.join(folder, "dif_normal-binormal-poisson.png"))
+plt.close()
 
 
-# https://www.w3schools.com/python/numpy/numpy_random_uniform.asp
+
+#################################################################################
+# Uniform Distribution                                                          #
+#################################################################################
+# Used to describe probability where every event has equal chances of occuring. #
+#                                                                               #
+# It has three parameters:                                                      #
+# low - lower bound - default 0 .0.                                             #
+# high - upper bound - default 1.0.                                             #
+# size - The shape of the returned array.                                       #
+#################################################################################
+
+x = random.uniform(size=(2, 3))
+
+print("\nCreate a 2x3 uniform distribution sample: ")
+print(x)
+
+
+# Visualization of Uniform Distribution
+sns.displot(random.uniform(size=1000), kind="kde")
+plt.title("Uniform Distribution")
+#plt.show()
+plt.savefig(os.path.join(folder, "uniform_distr.png"))
+plt.close()
+
+
+#################################################################################
+# Logistic Distribution                                                         #
+#################################################################################
+# Logistic Distribution is used to describe growth.                             #
+#                                                                               #
+# It has three parameters:                                                      #
+# loc - mean, where the peak is. Default 0.                                     #
+# scale - standard deviation, the flatness of distribution. Default 1.          #
+# size - The shape of the returned array.                                       #
+#################################################################################
+
+
+# Draw 2x3 samples from a logistic distribution with mean at 1 and stddev 2.0
+x = random.logistic(loc=1, scale=2, size=(2, 3))
+
+print("\nDraw 2x3 samples from a logistic distribution with mean at 1 and stddev 2.0: ")
+print(x)
+
+
+# Visualization of Logistic Distribution
+sns.displot(random.logistic(size=1000), kind="kde")
+
+plt.title("Visualization of Logistic Distribution")
+#plt.show()
+plt.savefig(os.path.join(folder, "logistic_dist.png"))
+plt.close()
+
+
+# Difference Between Logistic and Normal Distribution
+data = {
+  "normal": random.normal(scale=2, size=1000),
+  "logistic": random.logistic(size=1000)
+}
+
+sns.displot(data, kind="kde")
+plt.title("Difference Between Logistic and Normal Distribution")
+#plt.show()
+plt.savefig(os.path.join(folder, "dif_logistic-normal.png"))
+plt.close()
+
+
+#####################################################################################################
+# Multinomial Distribution                                                                          #
+#####################################################################################################
+# It has three parameters:                                                                          #
+# n - number of times to run the experiment.                                                        #
+# pvals - list of probabilties of outcomes (e.g. [1/6, 1/6, 1/6, 1/6, 1/6, 1/6] for dice roll).     #
+# size - The shape of the returned array.                                                           #
+#####################################################################################################
+
+x = random.multinomial(n=6, pvals=[1/6, 1/6, 1/6, 1/6, 1/6, 1/6])
+
+print("\nMultinomial Distribution")
+print(x)
+
+
+#####################################################################################################
+# Exponential Distribution                                                                          #
+#####################################################################################################
+# It has two parameters:                                                                            #
+# scale - inverse of rate ( see lam in poisson distribution ) defaults to 1.0.                      #
+# size - The shape of the returned array.                                                           #
+#####################################################################################################
+
+
+# Draw out a sample for exponential distribution with 2.0 scale with 2x3 size:
+x = random.exponential(scale=2,size=(2,4))
+
+print("\nDraw out a sample for exponential distribution with 2.0 scale with 2x3 size: ")
+print(x)
+
+
+# Visualization of Exponential Distribution
+sns.displot(random.exponential(size=1000), kind="kde")
+plt.title("Visualization of Exponential Distribution")
+#plt.show()
+plt.savefig(os.path.join(folder, "exponential_dist.png"))
+plt.close()
+
+
+#####################################################################################################
+# Chi Square Distribution                                                                           #
+#####################################################################################################
+# Chi Square distribution is used as a basis to verify the hypothesis.                              #
+#                                                                                                   #
+# It has two parameters:                                                                            #
+# df - (degree of freedom).                                                                         #
+# size - The shape of the returned array.                                                           #
+#####################################################################################################
+
+# Draw out a sample for chi squared distribution with degree of freedom 2 with size 2x3:
+x = random.chisquare(df=2, size=(2, 3))
+
+print("\nDraw out a sample for chi squared distribution with degree of freedom 2 with size 2x3:")
+print(x)
+
+
+# Visualization of Chi Square Distribution
+sns.displot(random.chisquare(df=1, size=1000), kind="kde")
+plt.title("Visualization of Chi Square Distribution")
+#plt.show()
+plt.savefig(os.path.join(folder, "Chi_Square_dist.png"))
+plt.close()
+
+
+#####################################################################################################
+# Rayleigh Distribution                                                                             #
+#####################################################################################################
+# Rayleigh distribution is used in signal processing.                                               #
+#                                                                                                   #
+# It has two parameters:                                                                            #
+# scale - (standard deviation) decides how flat the distribution will be default 1.0).              #
+# size - The shape of the returned array.                                                           #
+#####################################################################################################
+
+
+# Draw out a sample for rayleigh distribution with scale of 2 with size 2x3:
+x = random.rayleigh(scale=2, size=(2, 3))
+
+print("\nDraw out a sample for rayleigh distribution with scale of 2 with size 2x3: ")
+print(x)
+
+
+# Visualization of Rayleigh Distribution
+print("Visualization of Rayleigh Distribution")
+
+sns.displot(random.rayleigh(size=1000), kind="kde")
+plt.title("Visualization of Rayleigh Distribution")
+#plt.show()
+plt.savefig(os.path.join(folder, "rayleigh_dist.png"))
+plt.close()
+
+
+#####################################################################################################
+# Pareto Distribution                                                                               #
+#####################################################################################################
+# It has two parameter:                                                                             #
+# a - shape parameter.                                                                              #
+# size - The shape of the returned array.                                                           #
+#####################################################################################################
+
+
+# Draw out a sample for pareto distribution with shape of 2 with size 2x3:
+x = random.pareto(a=2, size=(2, 3))
+
+print("\nDraw out a sample for pareto distribution with shape of 2 with size 2x3:")
+print(x)
+
+
+# Visualization of Pareto Distribution
+str = "Visualization of Pareto Distribution"
+
+print(str)
+
+sns.displot(random.pareto(a=2, size=1000))
+plt.title(str)
+#plt.show()
+plt.savefig(os.path.join(folder, "pareto.png"))
+plt.close()
+
+
+#####################################################################################################
+# Zipf Distribution                                                                                 #
+#####################################################################################################
+# It has two parameters:                                                                            #
+# a - distribution parameter.                                                                       #
+# size - The shape of the returned array.                                                           #
+#####################################################################################################
+
+
+# Draw out a sample for zipf distribution with distribution parameter 2 with size 2x3:
+x = random.zipf(a=2, size=(2, 3))
+
+print("\nDraw out a sample for zipf distribution with distribution parameter 2 with size 2x3")
+print(x)
+
+
+# Visualization of Zipf Distribution
+print("Visualization of Zipf Distribution")
+
+x = random.zipf(a=2, size=1000)
+sns.displot(x[x<10])
+plt.title("Visualization of Zipf Distribution")
+#plt.show()
+plt.savefig(os.path.join(folder, "zipf_dist.png"))
+plt.close()

@@ -11,3 +11,7 @@ __pycache__/
 # System files
 .DS_Store
 Thumbs.db
+
+
+# ignore folder with distributions plots
+/01-data-basics/distributions_plots/
