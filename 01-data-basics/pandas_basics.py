@@ -175,4 +175,20 @@ df.fillna({"Calories": x}, inplace=True)
 print("\n")
 
 
+# Cleaning Data of Wrong Format
 # https://www.w3scools.com/python/pandas/pandas_cleaning_wrong_format.asp
+
+df = pd.read_csv(file_CSV)
+
+df['Date'] = pd.to_datetime(df['Date'], format='mixed')
+
+print("Convert to date:")
+print(df.to_string())
+print("\n\n")
+
+print("Remove rows with a NULL value in the 'Date' column:")
+df.dropna(subset=['Date'], inplace = True)
+print("\n\n")
+
+
+# https://www.w3schools.com/python/pandas/pandas_cleaning_wrong_data.asp
